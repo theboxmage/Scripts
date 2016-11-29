@@ -1,0 +1,38 @@
+
+#!/bin/bash
+#76 95 96 || 122 123
+muteC=$(cat /home/theboxmage/.config/i3/dunst_CheckMute)
+if [ "$1" = "0" ] ; then
+  if [ "$muteC" = "0" ] ; then
+    pulsemixer --get-volume > /home/theboxmage/.config/i3/dunst_CheckMute
+    echo $(pulsemixer --get-volume | cut -d " " -f 1)
+    pulsemixer --set-volume 0
+  else
+    pulsemixer --set-volume $(cat /home/theboxmage/.config/i3/dunst_CheckMute)
+    echo 0 > /home/theboxmage/.config/i3/dunst_CheckMute
+  fi
+fi
+if [ "$(cat /home/theboxmage/.config/i3/dunst_CheckMute)" = "0" ] ; then
+  if [ "$1" = "1" ] ; then
+    pulsemixer --set-volume $(($(pulsemixer --get-volume | cut -d " " -f 1)-5))
+  fi
+  if [ "$1" = "2" ] ; then
+    pulsemixer --set-volume $(($(pulsemixer --get-volume | cut -d " " -f 1)+5))
+  fi
+    ID=$(cat /home/theboxmage/.config/i3/dunst_AVOL)
+  if [ $ID -gt 0 ]
+  then
+    dunstify -p -r 5 "Volume: $(pulsemixer --get-volume | cut -d " " -f 1)%"
+  else
+    dunstify -p -r 5"Volume: $(pulsemixer --get-volume | cut -d " " -f 1)%"
+  fi
+else
+  ID=$(cat /home/theboxmage/.config/i3/dunst_AVOL)
+  if [ $ID -gt 0 ]
+  then
+    dunstify -p -r 5 "Volume: Muted"
+  else
+    dunstify -p -r 5"Volume: Muted"
+  fi
+fi
+

@@ -1,0 +1,20 @@
+#!/bin/bash
+filename=/sys/class/backlight/intel_backlight/brightness
+curr=$(head $filename)
+ # echo 1a2s3dQWE | sudo -S echo $1
+  if [ "$1" = "1" ] ; then
+        if [ "$curr" -lt 891 ] ; then
+          let curr=curr+46; echo $curr > $filename;
+        else 
+          let curr=937; echo $curr > $filename;
+        fi	
+  fi
+  if [ "$1" = "2" ] ; then
+	if [ "$curr" -gt 46 ] ; then
+          let curr=curr-46; echo $curr > $filename;
+        else
+	  let curr=0; echo $curr > $filename;
+        fi
+  fi
+  dunstify -p -r 15 "Brightness: $((200*$curr/937 % 2 + 100*$curr/937))%"
+

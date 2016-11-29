@@ -1,0 +1,3 @@
+#!/bin/bash
+
+dunstify -p -r 6 "Battery: $(echo $(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep  -E "time\ to\ full:|percentage") | cut -d ' ' -f 2)"

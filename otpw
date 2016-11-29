@@ -1,0 +1,21 @@
+
+#!/bin/bash
+echo Input Password Key
+read input;
+hold=$(cat ~/otpw_passwords | grep $input)
+if [ "${hold:0:3}" = "$input" ] ; then
+  echo ${hold:0:13}
+fi
+if [ "${hold:15:3}" = "$input" ] ; then
+  echo ${hold:15:13}
+fi
+if [ "${hold:30:3}" = "$input" ] ; then
+  echo ${hold:30:13}
+fi
+if [ "${hold:45:3}" = "$input" ] ; then
+  echo ${hold:45:13}
+fi
+if [ "${hold:60:3}" = "$input" ] ; then
+  echo ${hold:60:13}
+fi
+

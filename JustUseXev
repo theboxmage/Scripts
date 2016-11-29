@@ -1,0 +1,35 @@
+
+#!/bin/bash
+
+lines ()
+{
+  for i in $(seq 1 $(tput lines)); do
+    tput cup $i 0;
+    printf '|'
+    tput cup $i $(tput cols); printf '|'
+  done
+  for i in $(seq 1 $(tput cols)); do
+     tput cup 0 0
+     printf -
+  done
+  tput cup $(tput lines) 0
+  for i in $(seq 1 $(tput cols)); do
+     printf -
+  done
+  tput cup 0 0
+  for i in $(seq 1 $(tput cols)); do
+     printf -
+  done
+}
+
+tput clear
+lines
+read -rsn1 choice || continue
+tput cup 1 1
+echo $choice
+while [ "$choice" != "Q" ]; do
+  read -rsn1 choice || continue
+  tput cup 1 1
+  echo $choice
+done
+

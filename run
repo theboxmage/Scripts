@@ -1,0 +1,61 @@
+
+#!/bin/bash
+echo Directories:
+for i in */; do
+  if [ "$i" != "*/" ]; then
+	echo -e "\e[1m\e[33m    $i \e[0m"
+  else 
+	echo -e "\e[1m\e[33m    Empty \e[0m"
+  fi
+done
+echo
+hold=T
+echo Executable Files:
+for i in *; do
+    if [ "$i" != "*/" ]; then
+	if [ -f "$i" ] ; then
+	    if [[ -x "$i" ]]; then
+		echo -e "\e[1m\e[32m    $i \e[0m"
+		hold=F
+	    fi
+	fi
+    fi
+done
+if [ "$hold" = "T" ]; then
+    echo -e "\e[1m\e[32m    Empty \e[0m"
+fi
+echo
+
+echo Other Files:
+hold=T
+for i in *; do
+    if [ "$i" != "*/" ]; then
+	if [ -f "$i" ] ; then
+	    if [[ -x "$i" ]]; then
+		hold=$hold
+	    else
+		echo -e "\e[1m\e[91m    $i \e[0m"
+		hold=F
+	    fi
+	fi
+    fi
+done
+if [ "$hold" = "T" ]; then
+    echo -e "\e[1m\e[91m    Empty \e[0m"
+fi
+echo
+
+if [ "$1" = "-a" ]; then
+hold=T
+echo Hidden Files and Folders:
+for i in .*; do
+    if [ "$i" != "." ] && [ "$i" != ".." ]; then
+		echo -e "\e[1m\e[34m    $i \e[0m"
+	hold=F
+    fi
+done
+if [ "$hold" = "T" ]; then
+    echo -e "\e[1m\e[34m    Empty \e[0m"
+fi
+echo
+fi
