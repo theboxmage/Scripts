@@ -1,5 +1,12 @@
 
 #!/bin/bash
+#--------------------------------------------------
+# Keyboard LEDs never worked
+# Not even after adding aspci= to kernel paramaters
+# I use it to this day.
+# Requires dmenu and dunstify for notifications.
+#---------------------------------------------------
+
 filename=/sys/devices/platform/asus-nb-wmi/leds/asus\:\:kbd_backlight/brightness
 
 curr=$(head $filename)

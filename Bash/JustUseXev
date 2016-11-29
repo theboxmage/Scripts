@@ -1,6 +1,9 @@
-
 #!/bin/bash
-
+#------------------------------
+# I found xev.
+# This is literally worthless.
+# Kept it anyway, fight me.
+#------------------------------
 lines ()
 {
   for i in $(seq 1 $(tput lines)); do
