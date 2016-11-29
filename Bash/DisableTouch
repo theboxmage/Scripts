@@ -1,4 +1,10 @@
 #!/bin/bash
+#------------------------------------------------------
+# I could never manage to get this in a oneliner.
+# I'm not sure why.
+# I guess I could do what I did but with a semicolon.
+#------------------------------------------------------
+
 
 hold=$(xinput | grep Touchscreen | cut -d '=' -f 2)
 

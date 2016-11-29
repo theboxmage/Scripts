@@ -1,5 +1,6 @@
 
 #!/bin/bash
+# Testing how to read all paramaters. I was new shutup.
 for i in $@; do
 echo $i
 done

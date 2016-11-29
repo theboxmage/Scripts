@@ -1,4 +1,9 @@
 #!/bin/bash
+#---------------------------------------------------------------------
+# This gets called in my i3 config on f5 and f6.
+# At least, it used to, before I added aspci= to my kernel paramaters.
+#---------------------------------------------------------------------
+
 filename=/sys/class/backlight/intel_backlight/brightness
 curr=$(head $filename)
  # echo 1a2s3dQWE | sudo -S echo $1

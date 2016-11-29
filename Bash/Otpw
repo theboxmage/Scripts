@@ -1,5 +1,11 @@
 
 #!/bin/bash
+#--------------------------------------------------------
+#
+# Parses a file, at ~/otpw_passwords for the otpw for ssh.
+#
+#---------------------------------------------------------
+
 echo Input Password Key
 read input;
 hold=$(cat ~/otpw_passwords | grep $input)
