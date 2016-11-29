@@ -7,3 +7,4 @@
 hold=$(xinput | grep Touchscreen | cut -d '=' -f 2)
 
 xinput --enable ${hold:0:2}
+
