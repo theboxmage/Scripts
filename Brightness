@@ -1,0 +1,91 @@
+#!/bin/bash
+
+lines ()
+{
+  for i in $(seq 1 $(tput lines)); do
+    tput cup $i 0;
+    printf '|'
+    tput cup $i $(tput cols); printf '|'
+  done
+  for i in $(seq 1 $(tput cols)); do
+     printf -
+  done
+  tput cup 0 0
+  for i in $(seq 1 $(tput cols)); do
+     printf -
+  done
+}
+
+let hold=$(tput lines)-3
+filename=/sys/class/backlight/intel_backlight/brightness
+curr=$(head $filename)
+topvar=975
+  sudo echo hold
+  tput clear
+  tput cup $(tput lines) 0; lines
+ 
+  tput cup 1 3; echo "Brightness Adjuster" 
+  tput cup 2 3; echo "Current Brightness: $percent"
+  tput cup 5 3; echo "U: Brightness Up 25"
+  tput cup 6 3; echo "D: Brightness Down 25"
+  tput cup 7 3; echo "S: Set"
+  tput cup 8 3; echo "Q: Quit"
+while [ $hold -gt -1 ]
+  holdvar=$((200*$curr/925 % 2 + 100*$curr/925))%
+  do #sudo echo 800 | sudo dd of=$filename >& /dev/null
+  tput cup 2 23; printf "%4s" ""
+  tput cup 2 23; echo $holdvar
+  tput cup 10 3; printf "%30s" ""
+  tput cup 10 3; printf "Make your selection: "
+  ID=$(cat /home/theboxmage/.config/i3/dunst_volume)
+  read -rsn1 choice || continue
+    case $choice in 
+      [Uu+=]) 
+        if [ "$curr" -lt 925 ] ; then
+          let curr=curr+25; echo $curr > $filename;
+        else 
+          let curr=925; echo $curr > $filename;
+        fi;
+	if [ $ID -gt "0" ]
+	then
+	  dunstify -p -r $ID "Brightness: $((200*$curr/925 % 2 + 100*$curr/925))%" >/home/theboxmage/.config/i3/dunst_volume
+	else
+	  dunstify -p "Brightness: $((200*$curr/925 % 2 + 100*$curr/925))%" >/home/theboxmage/.config/i3/dunst_volume
+	fi
+        
+	;;
+      [Dd-]) 
+        if [ "$curr" -gt 25 ] ; then
+          let curr=curr-25; echo $curr > $filename;
+        else 
+          let curr=25; echo $curr > $filename;
+        fi;
+	if [ $ID -gt "0" ]
+	then
+	  dunstify -p -r $ID "Brightness: $((200*$curr/925 % 2 + 100*$curr/925))%" >/home/theboxmage/.config/i3/dunst_volume
+	else
+	  dunstify -p "Brightness: $((200*$curr/925 % 2 + 100*$curr/925))%" >/home/theboxmage/.config/i3/dunst_volume
+	fi
+
+	;;
+      [Ss]) tput cup 10 3; printf "Set the brightness: "; read temp; #echo $curr > $filename;;
+        if [ "$temp" -lt 25 ] ; then
+          let curr=25 ;echo $curr > $filename;
+        elif [ "$temp" -gt 925 ] ; then
+          let curr=925 ; echo $curr > $filename;
+        else
+          let curr=temp ; echo $curr > $filename
+        fi;
+		if [ $ID -gt "0" ]
+	then
+	  dunstify -p -r $ID "Brightness: $((200*$curr/925 % 2 + 100*$curr/925))%" >/home/theboxmage/.config/i3/dunst_volume
+	else
+	  dunstify -p "Brightness: $((200*$curr/925 % 2 + 100*$curr/925))%" >/home/theboxmage/.config/i3/dunst_volume
+	fi
+
+	;;
+      [Qq]) tput clear; exit ;;
+    esac
+done
+
+
