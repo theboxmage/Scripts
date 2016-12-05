@@ -1,3 +1,6 @@
+#include <iomanip>
+
+
 class node
 {
 	public:
@@ -34,7 +37,7 @@ class node
 				addGreater(input);
 			}
 		}
-		
+
 		void addGreater(box & input)
 		{
 			if(right!=NULL)
@@ -46,7 +49,7 @@ class node
 				right = new node(input.getv());
 			}
 		}
-		
+
 		void addLesser(box & input)
 		{
 			if(left!=NULL)
@@ -65,7 +68,7 @@ class node
 			{
 				left->display();
 			}
-			std::cout << v << " with a frequency of: " << f << "." << std::endl;
+			std::cout <<  std::left << std::setw(2)  << v << " with a frequency of: " << f << "." << std::endl;
 			if(right!=NULL)
 			{
 				right->display();

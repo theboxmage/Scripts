@@ -10,14 +10,14 @@ int main()
 {
 	//default_random_engine gen(10000000000);
 	//default_random_engine gen(10);
-
-	uniform_int_distribution<int> dis(0,100);	
+    default_random_engine gen(time(NULL));
+	uniform_int_distribution<int> dis(0,100);
 	queue<box> boxes = queue<box>();
-	
+
 	cout << "Input the amount of boxes to be added." << endl;
 	int boxcount;
 	cin >> boxcount;
-	
+
 	cin.ignore();
 	cout << endl << "Contents of the queue: \n";
 	for(int i = 0; i < boxcount; i++)
@@ -26,8 +26,8 @@ int main()
 		boxes.push(holdbox);
 		cout << holdbox.getv() << endl;
 	}
-	cout << endl << "Displaying the boxes: \n";
-	
+	cout << endl << "Displaying the tree: \n";
+
 	node root = node();
 	while(!boxes.empty())
 	{
@@ -35,12 +35,4 @@ int main()
 		boxes.pop();
 	}
 	root.display();
-	
-	cout << endl;
-
-	while(!boxes.empty())
-	{
-		cout << boxes.front().getv() << endl;
-		boxes.pop();
-	}
 }
