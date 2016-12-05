@@ -6,20 +6,21 @@ using namespace std;
 class Node
 {
 public:
-	Node(){id = 'g';left=NULL;right=NULL;}
+	Node(){id = 'n';holdlist.push_back('n');left=NULL;right=NULL;}
 	Node(char c)
 	{
 		
 		id=c;
 		left = NULL;
 		right = NULL;
-		holdlist.push_back('g');
-		litr = holdlist.begin();
-		cout << litr->getchar();
+		holdlist.push_back('m');
 	}
 	Node(char c, char lc)
 	{
-		
+		id=c;
+		left = NULL;
+		right = NULL;
+		holdlist.push_back(lc);
 	}
 	char getchar()
 	{
@@ -27,26 +28,26 @@ public:
 	}
 	void addChar(char c, char lc)
 	{
-		if(id = c)
-		{
-			holdlist.push_back(lc);
-		}
-		else if(c < id)
+		 if(c==id)
+		 {
+		 	holdlist.push_back(lc);
+		 }
+		 if(c < id)
 		{
 			if(left == NULL)
 			{
-				left = new Node(c);
+				left = new Node(c, lc);
 			}
 			else
 			{
 				left->addChar(c, lc);
 			}
 		}
-		else
+		if(c > id)
 		{
 			if(right == NULL)
 			{
-				right = new Node(c);
+				right = new Node(c, lc);
 			}
 			else
 			{
@@ -60,7 +61,14 @@ public:
 		{
 			left->display();
 		}
-		cout << "ID: " << id << endl;
+		cout << "ID: " << id  << "                Entries: ";
+		litr = holdlist.begin();
+		while(litr!=holdlist.end())
+		{
+			cout << *litr;
+			litr++;
+		}
+		cout << endl;
 		if(right!=NULL)
 		{
 			right->display();

@@ -5,14 +5,10 @@ using namespace std;
 
 int main()
 {
-	Node root = Node('g');
-	for(int i = 0; i < 5; i++)
-	{
-		char hold;
-		cin >> hold;
-		char hold2;
-		cin >> hold2;
-		root.addChar(hold, hold2);
-		root.display();
-	}
+	Node root = Node('n', 'q');
+	root.addChar('d', 'b');
+	root.addChar('a', 'b');
+	root.addChar('b', 'b');
+	root.addChar('d', 'c');
+	root.display();
 }
