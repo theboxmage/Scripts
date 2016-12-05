@@ -1,4 +1,4 @@
 # Scripts
-Random scripts I write while I learn Linux and stuff I guess. 
-
-There will be some c++ in here too.
+Bash-Random scripts used for system management for linux. 
+CSFinal-CSFinal
+Configs-Various configs I've decided to store
