@@ -9,13 +9,15 @@ int current;
 
 int main()
 {
-	int current = 1;
+	uniform_int_distribution<int> radist(1, 100);
+	//int current = 1;
 	int state=0;
 	stack<int> popstack;
 	priority_queue<int> queue[4];
 	default_random_engine gen(time(NULL));
 	uniform_int_distribution<int> amdist(1, 5);
 	uniform_int_distribution<int> qudist(0, 3);
+
 
 
 	bool flag = true;
@@ -27,8 +29,8 @@ int main()
 			for(int i = 0; i < amount; i++)
 			{
 	
-				queue[state].push(current);
-				current++;
+				queue[state].push(radist(gen));
+				//current++;
 				if(state<3)
 				{
 					state++;
@@ -37,10 +39,10 @@ int main()
 				{
 					state=0;
 				}
-				if(current==101)
+				/*if(current==101)
 				{
 					current = 1;
-				}
+				}*/
 			}
 			int popqueue = qudist(gen);
 			if(!queue[popqueue].empty())
