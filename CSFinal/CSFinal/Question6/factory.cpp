@@ -10,7 +10,6 @@ int current;
 int main()
 {
 	uniform_int_distribution<int> radist(1, 100);
-	//int current = 1;
 	int state=0;
 	stack<int> popstack;
 	priority_queue<int> queue[4];
@@ -30,7 +29,6 @@ int main()
 			{
 	
 				queue[state].push(radist(gen));
-				//current++;
 				if(state<3)
 				{
 					state++;
@@ -39,10 +37,6 @@ int main()
 				{
 					state=0;
 				}
-				/*if(current==101)
-				{
-					current = 1;
-				}*/
 			}
 			int popqueue = qudist(gen);
 			if(!queue[popqueue].empty())
