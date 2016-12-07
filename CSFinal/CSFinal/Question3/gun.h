@@ -26,7 +26,7 @@ class gun{
 		}
 	}
 	
-	void display()//This was really just for testing, but I might end up using it eventually.
+	void display()
 	{
 		taritr = targets.begin();
 		int i = 1;
