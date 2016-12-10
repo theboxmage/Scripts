@@ -1,0 +1,18 @@
+#!/bin/bash
+#!/bin/bash
+###############################################################################
+#
+# I had a project once that wanted me to use find in conjunction with head
+# so that I could find all the files matching *.txt and check the first line.
+#
+#
+# I decided to redo that assignment, but add color syntax and attempt to make
+# it modular. In the long run I may never use it, but it sounded like it might
+# be useful at some point in time.
+#
+# Also made it 3 lines, maybe one day I'll make it a flag.
+#
+# $1 is the file type. Input something similar to .txt .doc .png
+# $2 is the directory. If left out, it will start from your current directory.
+###############################################################################
+find $2 -type f  -name "*$1" -exec echo -en '\033[0;31m'{}'\033[0m' \; -exec echo -e '\033[0;94m' \; -exec head -n3 {} \; -exec echo -e '\033[0;00m' \;
