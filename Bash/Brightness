@@ -1,9 +1,11 @@
 #!/bin/bash
-#--------------------------------------------------------------------
+#############################################################################
+#
 # My Brightness drives for my laptop did not work originally.
 # I wrote this to deal with that.
 # Since then I learned I needed to add aspci= to my kernel paramters.
-#--------------------------------------------------------------------
+#
+#############################################################################
 lines ()
 {
   for i in $(seq 1 $(tput lines)); do

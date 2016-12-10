@@ -1,9 +1,11 @@
 #!/bin/bash
-#--------------------------------------------
+#############################################################################
+#
 # Kinda worthless, I don't use my touchscreen.
 # What I shoulda did was made it a toggle.
 # Maybe later.
-#---------------------------------------------
+#
+#############################################################################
 hold=$(xinput | grep Touchscreen | cut -d '=' -f 2)
 
 status=$(cat /tmp/ScreenStatus)

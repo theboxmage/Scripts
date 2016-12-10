@@ -1,0 +1,22 @@
+#!/bin/bash
+#############################################################################
+# 
+# Searches a file for a string and replaces it.
+# Can be used with multiple files.
+#
+# $1    - regex string
+# $2    - replacement string
+# $3-$n - files to check
+#
+# This was a final assignment for CS252 at ODU, under the topic 
+# scripting.
+#
+#############################################################################
+
+hold=0
+for i in $*; do
+  hold=$((hold+1))
+  if [ $hold -gt 2 ]; then
+    sed "s/$1/$2/g" $i
+  fi
+done

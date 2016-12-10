@@ -1,6 +1,6 @@
 
 #!/bin/bash
-#----------------------------------------------------
+#############################################################################
 #
 # I wrote this because I was teaching someone bash 
 # and they got lost in ls.
@@ -8,9 +8,7 @@
 # They eventually figured out ls, but at the time this
 # was just more clear to them.
 #
-#-----------------------------------------------------
-
-
+#############################################################################
 
 echo Directories:
 for i in */; do

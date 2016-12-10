@@ -1,10 +1,13 @@
 
 #!/bin/bash
+#############################################################################
+#
 #76 95 96 || 122 123
 # Bound to the keycodes above, it edits my volume.
 # pulseaudio worked, but my keyboard keys didn't. 
 # Fixed it on my own.
-
+#
+#############################################################################
 
 muteC=$(cat /home/theboxmage/.config/i3/dunst_CheckMute)
 if [ "$1" = "0" ] ; then
