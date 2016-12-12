@@ -8,7 +8,7 @@
 
 echo Input Password Key
 read input;
-hold=$(cat ~/otpw_passwords | grep $input)
+hold=$(cat ~/.otpw_passwords | grep $input)
 if [ "${hold:0:3}" = "$input" ] ; then
   echo ${hold:0:13}
 fi
