@@ -1,0 +1,16 @@
+#!/bin/bash
+
+hold=""
+
+line(){
+for i in $(seq 1 $(tput cols)); do
+hold=$hold"-"
+done
+echo $hold
+}
+
+
+
+for i in $(seq 1 $1); do 
+line
+done
