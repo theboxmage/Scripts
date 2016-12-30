@@ -1,0 +1,54 @@
+#!/bin/bash
+#############################################################################
+#
+# I wanted to be able to sort my packages by where they were located.
+# This is a menu script to display packages from which location they
+# were downloaded from. 
+# 
+# $1 skips the menu
+#
+#############################################################################
+
+run()
+{
+  input=$(yaourt -Q | grep -E "^$1")
+  #echo $input
+  bold='\033[1m'
+  blue='\e[34m'
+  red='\e[31m'
+  white='\e[97m'
+  default='\e[39m'
+  printf '%s\n' "$input" | while IFS= read -r line
+    do
+    label1="$1:"
+    label2="$(echo $line | grep -oE '\/\S+')"
+    label3="$(echo $line | grep -oE '\s[0-9]\S+')"
+    num=${#label1}
+    num=$((num-2))
+    printf "$bold$red%-${num}s $white%-30s $blue%-15s \n" "$label1" "${label2:1:100}" "$label3"
+  done
+}
+hold=0
+if [ -z "$1" ]; then
+  while [ $hold -gt -1 ]; do
+    tput clear
+    tput cup 0 0; echo "1) Core Packages"
+    tput cup 1 0; echo "2) Extra Packages"
+    tput cup 2 0; echo "3) Local Packages"
+    tput cup 3 0; echo "4) Community Packages"
+    tput cup 4 0; echo "5) Multilib Packages"
+    tput cup 5 0; echo "6) Quit"
+
+    read -rsn1 choice || continue
+    case $choice in
+      [Cc1]) run "core" | less;;
+      [Ee2]) run "extra" | less;;
+      [Ll3]) run "local" | less;;
+      [Oo4]) run "community" | less;;
+      [Mm5]) run "multilib" | less;;
+      [Qq6]) hold=$((hold-1));;
+    esac
+  done
+else
+  run $1
+fi

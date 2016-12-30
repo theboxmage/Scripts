@@ -9,8 +9,8 @@
 hold=$(xinput | grep Touchscreen | cut -d '=' -f 2)
 
 status=$(cat /tmp/ScreenStatus)
-
-if [ "$stats" = "0" ]; then
+echo ${hold:0:2}
+if [ "$status" = "0" ]; then
 echo 1 > /tmp/ScreenStatus
 xinput --disable ${hold:0:2}
 else
