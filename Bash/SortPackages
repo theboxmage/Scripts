@@ -46,7 +46,7 @@ if [ -z "$1" ]; then
       [Ll3]) run "local" | less;;
       [Oo4]) run "community" | less;;
       [Mm5]) run "multilib" | less;;
-      [Qq6]) hold=$((hold-1));;
+      [Qq6]) clear;hold=$((hold-1));;
     esac
   done
 else
