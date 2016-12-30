@@ -30,6 +30,7 @@ run()
 }
 hold=0
 if [ -z "$1" ]; then
+  tput smcup #save previous state
   while [ $hold -gt -1 ]; do
     tput clear
     tput cup 0 0; echo "1) Core Packages"
@@ -46,9 +47,10 @@ if [ -z "$1" ]; then
       [Ll3]) run "local" | less;;
       [Oo4]) run "community" | less;;
       [Mm5]) run "multilib" | less;;
-      [Qq6]) clear;hold=$((hold-1));;
+      [Qq6]) hold=$((hold-1));;
     esac
   done
+  tput rmcup #restore previous state
 else
   run $1
 fi
